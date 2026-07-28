@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les souvenirs qui restent</title>
+  <meta name="description" content="Les souvenirs qui restent - Une histoire racontée par Marco">
+  <link rel="icon" href="assets/icons/heart.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Fond animé -->
+  <div id="stars"></div>
+  <div id="shooting-stars"></div>
+  <div id="particles"></div>
+
+  <!-- Loader -->
+  <div id="loader">
+    <div class="loader-content">
+      <h1 class="loader-title">Les souvenirs qui restent</h1>
+      <p class="loader-author">Une histoire racontée par Marco</p>
+      <p class="loader-dedication">Dédiée à Guerdine ❤️</p>
+      <div class="loader-line"></div>
+      <p class="loader-text">Parce que certains souvenirs ne disparaissent jamais...</p>
+      <button id="startStory">Commencer</button>
+    </div>
+  </div>
+
+  <!-- Musique de fond -->
+  <audio id="musicPlayer" loop>
+    <source src="assets/music/music1.mp3" type="audio/mpeg">
+  </audio>
+  <button id="musicButton"><i class="fa-solid fa-music"></i></button>
+
+  <!-- Barre de progression -->
+  <div id="progressContainer">
+    <div id="progressBar"></div>
+  </div>
+
+  <!-- Livre interactif -->
+  <main id="book">
+    <header class="chapter-header">
+      <span id="chapter-number">Chapitre 1</span>
+      <h1 id="chapter-title"></h1>
+      <p id="chapter-quote"></p>
+    </header>
+    <section class="chapter-image">
+      <img id="chapter-image" src="" alt="Souvenir" decoding="async">
+    </section>
+    <section id="chapter-content"></section>
+    <div class="navigation">
+      <button id="prev"><i class="fa-solid fa-arrow-left"></i> Précédent</button>
+      <button id="next">Suivant <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+  </main>
+
+  <!-- Transition entre chapitres -->
+  <div id="chapterTransition">
+    <div class="transition-content">
+      <h2 id="transitionTitle"></h2>
+      <p id="transitionQuote"></p>
+    </div>
+  </div>
+
+  <!-- Galerie photos -->
+  <section id="gallerySection" class="hidden">
+    <div class="gallery-title">
+      <h1>Nos souvenirs</h1>
+      <p>Quelques images qui accompagnent cette histoire.</p>
+    </div>
+    <div class="gallery">
+      <img src="assets/images/photo1.jpg" alt="Souvenir 1" loading="lazy" decoding="async">
+      <img src="assets/images/photo2.jpg" alt="Souvenir 2" loading="lazy" decoding="async">
+      <img src="assets/images/photo3.jpg" alt="Souvenir 3" loading="lazy" decoding="async">
+      <img src="assets/images/photo4.jpg" alt="Souvenir 4" loading="lazy" decoding="async">
+      <img src="assets/images/photo5.jpg" alt="Souvenir 5" loading="lazy" decoding="async">
+      <img src="assets/images/photo6.jpg" alt="Souvenir 6" loading="lazy" decoding="async">
+    </div>
+  </section>
+
+  <!-- Écran final -->
+  <section id="endingScreen" class="hidden">
+    <div class="ending-card">
+      <h1>Merci.</h1>
+      <p>Merci d'avoir pris le temps de lire cette histoire.</p>
+      <p>Derrière chaque mot se cache un souvenir sincère.</p>
+      <p>Derrière chaque chapitre se cache une émotion que je voulais partager avec toi.</p>
+      <p>Quelle que soit la suite...</p>
+      <h2>Les souvenirs qui restent</h2>
+      <h3>Le début d'une nouvelle ère</h3>
+      <button id="replyButton">❤️ Écrire la suite</button>
+    </div>
+  </section>
+
+  <!-- Page réponse -->
+  <section id="replyPage" class="hidden">
+    <div class="reply-card">
+      <h1>Réponse à Marco</h1>
+      <p>Si tu souhaites répondre, tu peux écrire librement ce que tu ressens.</p>
+      <input id="replyName" type="text" placeholder="Ton prénom">
+      <textarea id="replyMessage" rows="10" placeholder="Écris ici..."></textarea>
+      <button id="sendReply">Envoyer</button>
+    </div>
+  </section>
+
+  <!-- Overlay noir -->
+  <div id="fadeOverlay"></div>
+
+  <!-- Message d'au revoir -->
+  <div id="goodbyeMessage">
+    <div class="goodbye-card">
+      <h2>Merci.</h2>
+      <p>Peu importe où la vie nous mènera...</p>
+      <p>Merci d'avoir fait partie de cette histoire.</p>
+    </div>
+  </div>
+
+  <!-- Playlist cachée -->
+  <div id="playlist" style="display:none;">
+    <audio id="track1"><source src="assets/music/music1.mp3" type="audio/mpeg"></audio>
+    <audio id="track2"><source src="assets/music/music2.mp3" type="audio/mpeg"></audio>
+    <audio id="track3"><source src="assets/music/music3.mp3" type="audio/mpeg"></audio>
+    <audio id="track4"><source src="assets/music/music4.mp3" type="audio/mpeg"></audio>
+  </div>
+
+  <!-- Effets visuels -->
+  <canvas id="heartCanvas"></canvas>
+  <div id="floatingHearts"></div>
+  <div id="petals"></div>
+  <div id="snowStars"></div>
+
+  <!-- Pied de page -->
+  <footer>
+    <div class="footer-content">
+      <h2>Les souvenirs qui restent</h2>
+      <p>Une histoire racontée avec sincérité.</p>
+      <p>Merci d'avoir été présente dans une partie de ma vie.</p>
+      <small>© 2026 Marco</small>
+    </div>
+  </footer>
+
+  <script src="chapters.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
