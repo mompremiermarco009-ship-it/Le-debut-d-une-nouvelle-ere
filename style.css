@@ -1,0 +1,574 @@
+/* ===========================================
+   LES SOUVENIRS QUI RESTENT
+   Style romantique – version optimisée
+=========================================== */
+
+:root {
+  --primary: #ff4d88;
+  --secondary: #ff9ac2;
+  --bg-dark: #050510;
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --glass: rgba(255, 255, 255, 0.12);
+  --white: #ffffff;
+  --text: #f8f8f8;
+  --shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  --font-title: 'Cinzel', serif;
+  --font-text: 'Poppins', sans-serif;
+  --font-quote: 'Cormorant Garamond', serif;
+  --gradient-primary: linear-gradient(135deg, #ff4d88, #ff88b5);
+  --gradient-bar: linear-gradient(90deg, #ff4d88, #ff8fb9);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: linear-gradient(180deg, #03030b, #09091d, #11112f, #060612);
+  font-family: var(--font-text);
+  color: var(--text);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Barre de défilement */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-primary);
+  border-radius: 20px;
+}
+
+/* =====================================
+Fond animé (étoiles)
+===================================== */
+#stars,
+#shooting-stars,
+#particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -3;
+}
+
+#stars {
+  background-image:
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.53) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.33) 1px, transparent 1px);
+  background-size: 120px 120px, 200px 200px, 300px 300px;
+  animation: starsMove 180s linear infinite;
+  will-change: transform;
+}
+
+@keyframes starsMove {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-600px); }
+}
+
+/* =====================================
+Loader
+===================================== */
+#loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #02020b, #09091c, #101032);
+  z-index: 99999;
+  content-visibility: auto;
+}
+
+.loader-content {
+  width: min(700px, 90%);
+  text-align: center;
+  padding: 50px;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  box-shadow: var(--shadow);
+}
+
+.loader-title {
+  font-family: var(--font-title);
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.loader-author {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin-bottom: 15px;
+}
+
+.loader-dedication {
+  font-size: 1.2rem;
+  color: #ffb2cf;
+  margin-bottom: 30px;
+}
+
+.loader-line {
+  width: 120px;
+  height: 2px;
+  margin: 0 auto 30px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+}
+
+.loader-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 35px;
+}
+
+#startStory {
+  padding: 15px 45px;
+  border: none;
+  border-radius: 40px;
+  font-size: 1rem;
+  cursor: pointer;
+  background: var(--gradient-primary);
+  color: white;
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+#startStory:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(255, 77, 136, 0.5);
+}
+
+/* =====================================
+Bouton musique
+===================================== */
+#musicButton {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  color: white;
+  font-size: 22px;
+  transition: transform 0.4s, background 0.4s;
+  z-index: 1000;
+}
+
+#musicButton:hover {
+  transform: scale(1.1);
+  background: var(--primary);
+}
+
+/* =====================================
+Barre progression
+===================================== */
+#progressContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 999;
+}
+
+#progressBar {
+  height: 100%;
+  width: 0;
+  background: var(--gradient-bar);
+  transition: width 0.5s;
+}
+
+/* =====================================
+Livre (chapitre en cours)
+===================================== */
+#book {
+  width: min(1000px, 92%);
+  margin: 120px auto 80px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 25px;
+  padding: 50px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+  animation: fadeUp 1s ease;
+  content-visibility: auto;
+}
+
+.chapter-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+#chapter-number {
+  display: inline-block;
+  padding: 8px 18px;
+  background: rgba(255, 77, 136, 0.15);
+  border: 1px solid rgba(255, 77, 136, 0.35);
+  border-radius: 999px;
+  color: #ffb3d1;
+  font-size: 0.95rem;
+  margin-bottom: 18px;
+}
+
+#chapter-title {
+  font-family: var(--font-title);
+  font-size: 3rem;
+  margin-bottom: 18px;
+  color: white;
+}
+
+#chapter-quote {
+  font-family: var(--font-quote);
+  font-size: 1.6rem;
+  font-style: italic;
+  color: #ffd8e8;
+  line-height: 1.6;
+}
+
+.chapter-image {
+  margin: 40px auto;
+  display: flex;
+  justify-content: center;
+}
+
+#chapter-image {
+  width: 100%;
+  max-width: 760px;
+  border-radius: 20px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+#chapter-image:hover {
+  transform: scale(1.02);
+}
+
+#chapter-content {
+  font-size: 1.15rem;
+  line-height: 2.1;
+  margin-top: 35px;
+}
+
+#chapter-content p {
+  margin-bottom: 24px;
+  text-align: justify;
+}
+
+/* =====================================
+Navigation
+===================================== */
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+  gap: 20px;
+}
+
+.navigation button {
+  padding: 15px 35px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: var(--gradient-primary);
+  transition: transform 0.35s, box-shadow 0.35s, opacity 0.35s;
+}
+
+.navigation button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(255, 77, 136, 0.45);
+}
+
+.navigation button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* =====================================
+Transition entre chapitres
+===================================== */
+#chapterTransition {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s;
+  z-index: 5000;
+}
+
+#chapterTransition.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.transition-content {
+  text-align: center;
+  max-width: 700px;
+  padding: 40px;
+}
+
+#transitionTitle {
+  font-family: var(--font-title);
+  font-size: 2.6rem;
+  margin-bottom: 20px;
+}
+
+#transitionQuote {
+  font-family: var(--font-quote);
+  font-size: 1.5rem;
+  color: #ffd2e3;
+  line-height: 1.8;
+}
+
+/* =====================================
+Animations
+===================================== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeUp 0.8s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+/* =====================================
+GALERIE
+===================================== */
+#gallerySection {
+  width: min(1200px, 95%);
+  margin: 80px auto;
+  padding: 40px;
+  content-visibility: auto;
+}
+
+.gallery-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.gallery-title h1 {
+  font-family: var(--font-title);
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.gallery-title p {
+  font-size: 1.1rem;
+  color: #ddd;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 20px;
+  transition: transform 0.4s, box-shadow 0.4s;
+  cursor: pointer;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+  will-change: transform;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 50px rgba(255, 77, 136, 0.35);
+}
+
+/* =====================================
+PAGE RÉPONSE
+===================================== */
+#replyPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 20px;
+  content-visibility: auto;
+}
+
+.reply-card {
+  width: min(800px, 95%);
+  padding: 50px;
+  border-radius: 25px;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+.reply-card h1 {
+  text-align: center;
+  font-family: var(--font-title);
+  margin-bottom: 20px;
+}
+
+.reply-card p {
+  text-align: center;
+  margin-bottom: 35px;
+  line-height: 1.8;
+}
+
+.reply-card input,
+.reply-card textarea {
+  width: 100%;
+  padding: 18px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-size: 1rem;
+  outline: none;
+}
+
+.reply-card textarea {
+  resize: vertical;
+  min-height: 220px;
+}
+
+.reply-card button {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  background: var(--gradient-primary);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: transform 0.35s;
+}
+
+.reply-card button:hover {
+  transform: translateY(-3px);
+}
+
+/* =====================================
+FOOTER
+===================================== */
+footer {
+  margin-top: 80px;
+  padding: 40px 20px;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+footer h2 {
+  font-family: var(--font-title);
+  margin-bottom: 15px;
+}
+
+footer p {
+  margin-bottom: 10px;
+  opacity: 0.85;
+}
+
+footer small {
+  opacity: 0.6;
+}
+
+/* =====================================
+CŒURS FLOTTANTS
+===================================== */
+.heart {
+  position: fixed;
+  bottom: -50px;
+  color: #ff6fa8;
+  font-size: 20px;
+  animation: floatHeart linear forwards;
+  pointer-events: none;
+  will-change: transform;
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* =====================================
+RESPONSIVE
+===================================== */
+@media (max-width: 768px) {
+  #book {
+    padding: 30px 20px;
+    margin-top: 100px;
+  }
+
+  #chapter-title {
+    font-size: 2rem;
+  }
+
+  #chapter-quote {
+    font-size: 1.2rem;
+  }
+
+  .navigation {
+    flex-direction: column;
+  }
+
+  .navigation button {
+    width: 100%;
+  }
+
+  .loader-title {
+    font-size: 2.2rem;
+  }
+
+  .reply-card {
+    padding: 30px 20px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
